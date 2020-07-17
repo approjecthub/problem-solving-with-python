@@ -1,3 +1,5 @@
+##  Values will be inserted as tuple, where the 0th index of the tuple will be treated as the key.
+
 class minheap():
     def __init__(self):
         self.heap = []
