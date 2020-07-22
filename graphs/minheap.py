@@ -1,5 +1,3 @@
-##  Values will be inserted as tuple, where the 0th index of the tuple will be treated as the key.
-
 class minheap():
     def __init__(self):
         self.heap = []
@@ -17,7 +15,7 @@ class minheap():
                 i = (i-1)//2
             else:
                 i = (i-2)//2
-            if self.heap[i][0]>self.heap[temp][0]:
+            if self.heap[i][0]>=self.heap[temp][0]:
                 self.pos[self.heap[i][1]] = temp
                 self.pos[self.heap[temp][1]] = i
                 self.heap[i], self.heap[temp] =  self.heap[temp],self.heap[i]
@@ -47,21 +45,37 @@ class minheap():
         if x[1] not in self.pos:
             return
         self.heap[self.pos[x[1]]]= x
-        self.heapify()
+        self.decreasekey(self.pos[x[1]])
+        
+    def decreasekey(self, pos):
+       
+        print(pos)
+        i = pos
+        temp = pos
+        while i>0:
+            if i%2!=0:
+                i = (i-1)//2
+            else:
+                i = (i-2)//2
+            if self.heap[i][0]>=self.heap[temp][0]:
+                self.pos[self.heap[i][1]] = temp
+                self.pos[self.heap[temp][1]] = i
+                self.heap[i], self.heap[temp] =  self.heap[temp],self.heap[i]
+                temp = i
     
     def heapify(self):
         i = 0
         n = len(self.heap)
         while (2*i+1)<n:
             if (2*i + 2)<n and self.heap[2*i+2][0]<self.heap[2*i+1][0]:
-                if self.heap[i][0]>self.heap[2*i+2][0]:
+                if self.heap[i][0]>=self.heap[2*i+2][0]:
                     self.pos[self.heap[2*i+2][1]] = i
                     self.pos[self.heap[i][1]] = 2*i+2
                     self.heap[2*i+2],self.heap[i] = self.heap[i],self.heap[2*i+2]
                 i = 2*i+2
                     
             else:
-                if self.heap[i][0]>self.heap[2*i+1][0]:
+                if self.heap[i][0]>=self.heap[2*i+1][0]:
                     self.pos[self.heap[2*i+1][1]] = i
                     self.pos[self.heap[i][1]] = 2*i+1
                     self.heap[2*i+1],self.heap[i] = self.heap[i],self.heap[2*i+1]
