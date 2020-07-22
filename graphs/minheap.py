@@ -48,8 +48,7 @@ class minheap():
         self.decreasekey(self.pos[x[1]])
         
     def decreasekey(self, pos):
-       
-        print(pos)
+
         i = pos
         temp = pos
         while i>0:
