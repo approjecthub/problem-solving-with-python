@@ -8,7 +8,9 @@ def find(i):
         return find(parent[i])
         
 def union(i,j):
-    parent[j] = i
+    xi = find(i)
+    xj = find(j)
+    parent[xj] = xi
     
 edges = [[0,1],[1,2],[0,2]]
 
